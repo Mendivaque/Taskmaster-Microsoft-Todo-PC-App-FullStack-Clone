@@ -49,7 +49,7 @@ function AddTask(props) {
       <form className="w-full" onSubmit={(e) => handleOnSubmit(e)}>
         <input
           type="text"
-          placeholder="Add a Task"
+          placeholder="Görev ekle"
           ref={inputRef}
           className="w-full bg-[#f6f6f6] outline-none"
           onBlur={() => setInputFocused(false)}
@@ -168,7 +168,7 @@ export default function TodosDisplay() {
             <span className="text-white text-3xl overflow-hidden whitespace-nowrap overflow-ellipsis">
               {selectedListName
                 ? selectedListName
-                : "Select a List to Display its Tasks"}
+                : "Görevleri Görüntülemek için Bir Liste Seçin"}
             </span>
           </div>
 
@@ -190,12 +190,12 @@ export default function TodosDisplay() {
               ) : !loading ? (
                 <p className="w-5/6 mx-auto text-2xl text-slate-100">
                   {defaultList && defaultList === "Planned"
-                    ? "Your Tasks with Due Date Appear here..."
-                    : "Add Your Tasks Here..."}
+                    ? "Son Tarihi Olan Görevleriniz Burada Görünür..."
+                    : "Görevlerinizi Buraya Ekleyin..."}
                 </p>
               ) : (
                 <p className="w-5/6 mx-auto text-2xl text-slate-100">
-                  Loading...
+                  Yükleniyor...
                 </p>
               )}
             </div>
@@ -217,7 +217,7 @@ export default function TodosDisplay() {
                         isCompletedTaskOpen ? "" : "rotate-180"
                       }`}
                     />
-                    <span>Completed</span>
+                    <span>Tamamlandı</span>
                   </div>
                 </div>
                 <div

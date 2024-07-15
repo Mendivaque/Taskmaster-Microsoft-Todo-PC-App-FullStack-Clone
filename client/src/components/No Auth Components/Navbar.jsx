@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className="mx-auto flex flex-col md:flex-row justify-between p-3 items-center">
         <Link to="/" className="mb-0 cursor-pointer">
           <span className="ml-3 text-3xl md:text-4xl font-bold text-gray-100">
-            Taskmaster
+            QDolist
           </span>
         </Link>
         <nav className=" text-base mx-auto md:mx-0 md:ml-auto">

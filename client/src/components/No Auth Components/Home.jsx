@@ -22,7 +22,7 @@ export default function Home() {
                 with
               </p>
               <p className="font-bold mb-8 text-5xl md:6xl lg:text-7xl xlg:text-8xl text-[#EDECEC] mx-auto">
-                Taskmaster
+                QDolist
               </p>
               <div className="flex justify-center mx-auto">
                 <Link to="/signup">
@@ -107,7 +107,7 @@ export default function Home() {
                   </li>
                   <li>Promote a step to a new task if needed.</li>
                   <li>
-                    Prioritize your day by adding tasks to 'My Day,' set due
+                    Prioritize your day by adding tasks to 'Bugün,' set due
                     dates, and mark tasks as important.
                   </li>
                   <li>
@@ -133,18 +133,18 @@ export default function Home() {
 
                 <ul className="list-disc space-y-2">
                   <li>
-                    <span className="font-semibold">'My Day'</span> empowers you
+                    <span className="font-semibold">'Bugün'</span> empowers you
                     to focus on the tasks that matter today. Easily view and add
                     tasks to your daily agenda.
                   </li>
                   <li>
-                    <span className="font-semibold">'Important'</span> keeps
+                    <span className="font-semibold">'Önemli'</span> keeps
                     your key priorities in one place, effortlessly displaying
                     all important tasks while automatically categorizing new
                     entries.
                   </li>
                   <li>
-                    Meanwhile, <span className="font-semibold">'Planned'</span>{" "}
+                    Meanwhile, <span className="font-semibold">'Planlanmış'</span>{" "}
                     ensures you never miss a deadline by conveniently showing
                     all tasks with due dates.
                   </li>
@@ -182,7 +182,7 @@ export default function Home() {
               </h1>
               <div className="text-gray-200 tracking-tighter mt-3 lg:text-xl xl:text-2xl">
                 <p className="font-semibold mb-3">
-                  Seamless task management with the 'My Day' feature.
+                  Seamless task management with the 'Bugün' feature.
                 </p>
                 <p className="mb-3">
                   As your day begins, all tasks with a due date set for today

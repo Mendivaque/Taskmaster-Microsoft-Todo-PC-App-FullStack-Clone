@@ -16,42 +16,17 @@ import todoStarMarkedIcon from "../assets/todoStarMarked_icon.svg";
 import { useTodoContext } from "../contexts/TodoContext";
 import Calender from "./Calender";
 import dayjs from "dayjs";
+import "dayjs/locale/tr"; // Türkçe yerelleştirme dosyasını dahil ediyoruz
+
+dayjs.locale("tr"); // dayjs'i Türkçe olarak ayarlıyoruz
 
 function SidebarFooter() {
   const { selectedTodo, deleteTodo } = useTodoContext();
 
   function getDate(mongodbDateString) {
-    // Step 1: Parse the MongoDB date string into a Date object
-    const dateObj = new Date(mongodbDateString);
-
-    // Step 2: Get the day of the week (e.g., "Tue")
-    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const dayOfWeek = daysOfWeek[dateObj.getUTCDay()];
-
-    // Step 3: Get the day of the month (e.g., "26")
-    const dayOfMonth = dateObj.getUTCDate();
-
-    // Step 4: Get the month name (e.g., "Sept")
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const monthName = months[dateObj.getUTCMonth()];
-
-    // Step 5: Format the result as "Day, DayOfMonth MonthName"
-    const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${monthName}`;
-
-    return formattedDate; // Output: "Tue, 27 Sept"
+    const dateObj = dayjs(mongodbDateString);
+    const formattedDate = dateObj.format("ddd, DD MMM");
+    return formattedDate;
   }
 
   return (
@@ -60,7 +35,7 @@ function SidebarFooter() {
         {selectedTodo && (
           <>
             <span className="text-sm text-gray-500 mx-auto">
-              Created on {getDate(selectedTodo.createdAt)}
+              Şu tarihte Oluşturuldu: {getDate(selectedTodo.createdAt)}
             </span>
             <img
               src={deleteIcon}
@@ -107,7 +82,6 @@ export default function TodoSidebar() {
     }
   }, [selectedTodo]);
 
-  //Setting up the Styles of the Due Date div based on the due Date the todo has
   useEffect(() => {
     if (selectedTodo) {
       if (
@@ -115,21 +89,17 @@ export default function TodoSidebar() {
         dayjs(selectedTodo.dueAt) >= dayjs().startOf("day")
       ) {
         setDueDateStyle({ spanCSS: "text-[#005fb8]", icon: dueDateSetIcon });
-        //cssObj.spanCss = "text-[#005fb8]"
       } else if (
         selectedTodo.dueAt &&
         dayjs(selectedTodo.dueAt) < dayjs().startOf("day")
       ) {
-        //cssObj.spanCss = "text-red-700"
         setDueDateStyle({ spanCSS: "text-red-700", icon: dueDateSetRedIcon });
       } else {
-        //cssObj.spanCss = "font-light"
         setDueDateStyle({ spanCSS: "font-light", icon: dueDateIcon });
       }
     }
   }, [selectedTodo]);
 
-  //Setting Todo note's value and title height
   useEffect(() => {
     if (selectedTodo) {
       setInitialTitleValue(selectedTodo.title);
@@ -173,7 +143,6 @@ export default function TodoSidebar() {
     }
   }, [selectedTodo]);
 
-  //Setting Todos Steps
   useEffect(() => {
     if (selectedTodo) {
       if (selectedTodo.steps) {
@@ -182,7 +151,6 @@ export default function TodoSidebar() {
     }
   }, [selectedTodo]);
 
-  //Adding Due Date to the Todo
   async function handleAddDueDate() {
     try {
       let updatedTodo;
@@ -198,7 +166,6 @@ export default function TodoSidebar() {
         );
       }
 
-      // Only update the todos state if the updatedTodo is available
       setTodos((prevTodos) => {
         return prevTodos.map((todo) => {
           if (todo._id === selectedTodo._id) {
@@ -213,8 +180,6 @@ export default function TodoSidebar() {
       console.error("Error updating todo's Due Date:", error);
     }
   }
-
-  //Handeling Removing Due Date of Todo
 
   async function handleRemoveDate(e) {
     e.stopPropagation();
@@ -225,7 +190,6 @@ export default function TodoSidebar() {
         selectedTodo._id
       );
 
-      // Only update the todos state if the updatedTodo is available
       setTodos((prevTodos) => {
         return prevTodos.map((todo) => {
           if (todo._id === selectedTodo._id) {
@@ -241,15 +205,12 @@ export default function TodoSidebar() {
     }
   }
 
-  //Handles TextArea's Size when the input changes
-
   function textAreaAdjust() {
     todoNoteRef.current.style.height = "auto";
     todoNoteRef.current.style.height = todoNoteRef.current.scrollHeight + "px";
     setNoteValue(todoNoteRef.current.value);
   }
 
-  //Handeling Saving of the Todo Note
   async function handleSaveNoteChanges() {
     try {
       if (todoNoteRef.current.value === initialNoteValue) {
@@ -267,7 +228,6 @@ export default function TodoSidebar() {
         );
       }
 
-      // Only update the todos state if the updatedTodo is available
       setTodos((prevTodos) => {
         return prevTodos.map((todo) => {
           if (todo._id === selectedTodo._id) {
@@ -282,15 +242,11 @@ export default function TodoSidebar() {
     }
   }
 
-  //Handle exit from Title Changing, the moment enter or esc pressed.
-
   function handleTitleChangeExitEvent(e) {
     if (e.key === "Escape" || e.key === "Enter") {
-      todoTitleRef.current.blur(); // Blur the input when "Esc" is pressed
+      todoTitleRef.current.blur();
     }
   }
-
-  //Title Change of Todo when the input gets blur
 
   async function handleTodoTitleChange() {
     try {
@@ -311,7 +267,6 @@ export default function TodoSidebar() {
         selectedTodo._id
       );
 
-      // Only update the todos state if the updatedTodo is available
       setTodos((prevTodos) => {
         return prevTodos.map((todo) => {
           if (todo._id === selectedTodo._id) {
@@ -333,7 +288,6 @@ export default function TodoSidebar() {
     setTodoTitle(todoTitleRef.current.value);
   }
 
-  //Remove from My Day
   async function handleRemoveMyDay(e) {
     e.stopPropagation();
 
@@ -349,7 +303,6 @@ export default function TodoSidebar() {
         return;
       }
 
-      // Only update the todos state if the updatedTodo is available
       setTodos((prevTodos) => {
         return prevTodos.map((todo) => {
           if (todo._id === selectedTodo._id) {
@@ -364,7 +317,7 @@ export default function TodoSidebar() {
       console.error("Error updating todo's My Day Property:", error);
     }
   }
-  //Add to My Day
+
   async function handleAddToMyDay() {
     if (selectedTodo.inMyDay) {
       return;
@@ -373,7 +326,6 @@ export default function TodoSidebar() {
     try {
       const updatedTodo = await editTodo({ inMyDay: "true" }, selectedTodo._id);
 
-      // Only update the todos state if the updatedTodo is available
       setTodos((prevTodos) => {
         return prevTodos.map((todo) => {
           if (todo._id === selectedTodo._id) {
@@ -389,11 +341,9 @@ export default function TodoSidebar() {
     }
   }
 
-  //Handle exit from Title Changing, the moment enter or esc pressed.
-
   function handleTitleChangeExitEventNote(e) {
     if (e.key === "Escape") {
-      todoNoteRef.current.blur(); // Blur the input when "Esc" is pressed
+      todoNoteRef.current.blur();
     }
   }
 
@@ -503,7 +453,7 @@ export default function TodoSidebar() {
                 selectedTodo.inMyDay ? "text-[#005fb8]" : "font-light"
               }`}
             >
-              {selectedTodo.inMyDay ? "Added to My Day" : "Add to My Day"}
+              {selectedTodo.inMyDay ? "Bugünüme Eklendi" : "Bugünüme Ekle"}
             </span>
             {selectedTodo.inMyDay && (
               <div
@@ -527,8 +477,10 @@ export default function TodoSidebar() {
             <img src={dueDateStyle.icon} alt="" className="h-5 mr-5" />
             <span className={`text-sm ${dueDateStyle.spanCSS}`}>
               {selectedTodo.dueAt
-                ? `Due ${dayjs(selectedTodo.dueAt).format("ddd, DD MMM, YYYY")}`
-                : "Add a Due Date"}
+                ? `Son tarih ${dayjs(selectedTodo.dueAt).format(
+                    "ddd, DD MMM, YYYY"
+                  )}`
+                : "Son tarih ekle"}
             </span>
             {selectedTodo.dueAt && (
               <div
@@ -554,7 +506,7 @@ export default function TodoSidebar() {
               onChange={(e) => textAreaAdjust(e)}
               type="text"
               className="bg-inherit w-full  outline-none p-2 resize-none"
-              placeholder="Add a Note"
+              placeholder="Not ekle"
             />
           </div>
 

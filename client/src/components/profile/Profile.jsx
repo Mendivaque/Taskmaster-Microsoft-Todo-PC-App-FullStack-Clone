@@ -17,7 +17,7 @@ function ProfileNav({ handleLogout }) {
       <div className="mx-auto flex justify-between p-3 items-center">
         <Link to="/app" className="mb-0 cursor-pointer">
           <span className="ml-3 text-2xl md:text-4xl font-bold text-gray-100">
-            Taskmaster
+            QDolist
           </span>
         </Link>
         <nav className="ml-auto text-base">
@@ -25,13 +25,13 @@ function ProfileNav({ handleLogout }) {
             to="/app"
             className={`text-gray-300 mr-4 font-medium text-sm md:text-lg cursor-pointer`}
           >
-            Home
+            Ana Sayfa
           </Link>
           <a
             onClick={handleLogout}
             className={`text-gray-300 mr-4 font-medium text-sm md:text-lg cursor-pointer`}
           >
-            LogOut
+            Çıkış Yap
           </a>
         </nav>
       </div>

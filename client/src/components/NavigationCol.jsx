@@ -277,7 +277,7 @@ export default function NavigationCol() {
       const myDayTodos = allTodos.filter((todo) => todo.inMyDay === true);
       setTodos(myDayTodos);
       setSelectedList(null);
-      setSelectedListName("My Day");
+      setSelectedListName("Bugün");
       setDefaultList("MyDay");
       setSelectedTodo(null);
       if (window.innerWidth < 1024) {
@@ -293,7 +293,7 @@ export default function NavigationCol() {
       const importantTodos = allTodos.filter((todo) => todo.markedImp === true);
       setTodos(importantTodos);
       setSelectedList(null);
-      setSelectedListName("Important");
+      setSelectedListName("Önemli");
       setDefaultList("Important");
       setSelectedTodo(null);
       if (window.innerWidth < 1024) {
@@ -309,7 +309,7 @@ export default function NavigationCol() {
       const dueTodos = allTodos.filter((todo) => todo.dueAt);
       setTodos(dueTodos);
       setSelectedList(null);
-      setSelectedListName("Planned");
+      setSelectedListName("Planlanmış");
       setDefaultList("Planned");
       setSelectedTodo(null);
       if (window.innerWidth < 1024) {
@@ -325,7 +325,7 @@ export default function NavigationCol() {
       const tasksTodos = await getTodosData(defaultTasksList._id);
       setTodos(tasksTodos);
       setSelectedList(null);
-      setSelectedListName("Tasks");
+      setSelectedListName("Görevlerim");
       setDefaultList("Tasks");
       setSelectedTodo(null);
       if (window.innerWidth < 1024) {
@@ -398,7 +398,7 @@ export default function NavigationCol() {
           </div>
 
           <div className="font-popins px-3 pt-2 text-xl text-slate-700  font-bold">
-            Taskmaster
+            QDolist
           </div>
           <div id="profile" className="w-full p-3 flex">
             <div
@@ -417,8 +417,8 @@ export default function NavigationCol() {
                 "aria-labelledby": "basic-button",
               }}
             >
-              <MenuItem onClick={handleProfile}>My account</MenuItem>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem onClick={handleProfile}>Hesabım</MenuItem>
+              <MenuItem onClick={handleLogout}>Çıkış Yap</MenuItem>
             </Menu>
             <div className="mr-auto my-auto w-full px-3 flex flex-col overflow-hidden whitespace-nowrap overflow-ellipsis">
               <span className="text-xl font-semibold overflow-hidden whitespace-nowrap overflow-ellipsis">
@@ -442,22 +442,22 @@ export default function NavigationCol() {
             >
               <DefaultListOption
                 icon={sunIcon}
-                title="My Day"
+                title="Bugün"
                 onClick={handleMyDayDefaultList}
               />
               <DefaultListOption
                 icon={starIcon}
-                title="Important"
+                title="Önemli"
                 onClick={handleImportantDefaultList}
               />
               <DefaultListOption
                 icon={calendarIcon}
-                title="Planned"
+                title="Planlanmış"
                 onClick={handlePlannedDefaultList}
               />
               <DefaultListOption
                 icon={tasksIcon}
-                title="Tasks"
+                title="Görevlerim"
                 onClick={handleTasksDefaultList}
               />
             </div>

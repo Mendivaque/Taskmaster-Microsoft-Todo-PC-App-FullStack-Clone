@@ -50,11 +50,11 @@ export function LoadingProvider({ children }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Session Expired"}
+          {"Oturum Süresi Geçti"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Your Session has been Expired. Please Login Again.
+            Oturumunuz sonlandırıldı lütfen tekrar giriş yapınız.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -63,7 +63,7 @@ export function LoadingProvider({ children }) {
             onClick={handleClose}
             autoFocus
           >
-            OK
+            Tamam
           </button>
 
         </DialogActions>

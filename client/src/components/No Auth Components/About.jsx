@@ -7,7 +7,7 @@ function About() {
 
       <div className="flex flex-col space-y-6 leading-7">
         <section>
-          Taskmaster is a clone of the 'Microsoft To-Do' PC application,
+          QDolist is a clone of the 'Microsoft To-Do' PC application,
           developed as a fullstack MERN application.
         </section>
 
@@ -21,11 +21,11 @@ function About() {
         </section>
 
         <section>
-          On the frontend, Taskmaster is powered by React, Vite, and Tailwind
+          On the frontend, QDolist is powered by React, Vite, and Tailwind
           CSS, complemented by various other libraries for a seamless user
           experience. The primary focus during development was to meticulously
           replicate the UI of the Microsoft To-Do app, striving for a seamless
-          resemblance. Furthermore, Taskmaster is designed to be fully
+          resemblance. Furthermore, QDolist is designed to be fully
           responsive, making it accessible and functional on any device
           seemlessly.
         </section>

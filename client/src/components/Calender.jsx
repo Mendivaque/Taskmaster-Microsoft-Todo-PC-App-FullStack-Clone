@@ -2,12 +2,13 @@ import React from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import { tr } from 'date-fns/locale';
 
 export default function Calender(props) {
   const { value, onChange, onCancel, onSave } = props;
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider adapterLocale={tr}  dateAdapter={AdapterDayjs}>
       <div className="border-2 border-gray-300 rounded-lg shadow-2xl flex flex-col items-center w-fit  bg-slate-100 absolute bottom-0 left-0.5 z-50">
         <DateCalendar
           value={value}

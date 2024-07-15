@@ -91,7 +91,7 @@ export function AddStep(props) {
                   onBlur={() => setIsAddingStep(false)}
                   ref={stepInputRef}
                   className="outline-none h-full bg-inherit"
-                  placeholder="Add next step"
+                  placeholder="Sonraki adımı ekle"
                 />
               </form>
             </span>
@@ -105,7 +105,7 @@ export function AddStep(props) {
           <img src={addStepIcon} alt="" className="h-5  mr-3" />
 
           <div className="w-full">
-            <span className="text-sm text-[#005fb8]">Add Step</span>
+            <span className="text-sm text-[#005fb8]">Adım ekle</span>
           </div>
         </div>
       )}
